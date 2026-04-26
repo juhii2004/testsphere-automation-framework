@@ -10,9 +10,7 @@ import org.testng.annotations.DataProvider;
         plugin = {
                 "pretty",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
-        },
-        tags = "@ui or @api",
-        monochrome = true
+        }
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 

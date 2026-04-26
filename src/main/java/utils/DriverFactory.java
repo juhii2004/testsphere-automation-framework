@@ -8,18 +8,15 @@ public class DriverFactory {
 
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    // Initialize driver
     public static void initDriver() {
-        WebDriverManager.chromedriver().setup(); // auto download driver
-        driver.set(new ChromeDriver()); // LOCAL browser
+        WebDriverManager.chromedriver().setup();  // auto setup
+        driver.set(new ChromeDriver());           // local browser
     }
 
-    // Get driver
     public static WebDriver getDriver() {
         return driver.get();
     }
 
-    // Quit driver
     public static void quitDriver() {
         if (driver.get() != null) {
             driver.get().quit();
