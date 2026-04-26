@@ -35,10 +35,9 @@ pipeline {
 
             // ✅ Allure Report
             allure([
-                includeProperties: false,
-                jdk: '',
-                results: [[path: 'target/allure-results']]
-            ])
+                        includeProperties: false,
+                        results: [[path: 'target/allure-results']]
+                    ])
 
             // ✅ JMeter Report
             publishHTML(target: [
