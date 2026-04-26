@@ -28,10 +28,13 @@ pipeline {
 
     post {
         always {
-            publishHTML([
+            publishHTML(target: [
                 reportDir: 'jmeter-report',
                 reportFiles: 'index.html',
-                reportName: 'JMeter Performance Report'
+                reportName: 'JMeter Performance Report',
+                keepAll: true,
+                alwaysLinkToLastBuild: true,
+                allowMissing: true
             ])
             echo 'Pipeline executed'
         }
