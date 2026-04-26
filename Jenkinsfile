@@ -21,13 +21,18 @@ pipeline {
 
         stage('Performance Test (JMeter)') {
             steps {
-                bat 'jmeter -n -t test-plan.jmx -l results.jtl'
+                bat 'jmeter -n -t test-plan.jmx -l results.jtl -e -o jmeter-report'
             }
         }
     }
 
     post {
         always {
+            publishHTML([
+                reportDir: 'jmeter-report',
+                reportFiles: 'index.html',
+                reportName: 'JMeter Performance Report'
+            ])
             echo 'Pipeline executed'
         }
         success {
