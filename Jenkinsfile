@@ -21,7 +21,11 @@ pipeline {
 
         stage('Performance Test (JMeter)') {
             steps {
-                bat 'jmeter -n -t test-plan.jmx -l results.jtl -e -o jmeter-report'
+                bat '''
+                if exist results.jtl del results.jtl
+                if exist jmeter-report rmdir /s /q jmeter-report
+                jmeter -n -t test-plan.jmx -l results.jtl -e -o jmeter-report
+                '''
             }
         }
     }
