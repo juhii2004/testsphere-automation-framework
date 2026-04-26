@@ -32,6 +32,15 @@ pipeline {
 
     post {
         always {
+
+            // ✅ Allure Report
+            allure([
+                includeProperties: false,
+                jdk: '',
+                results: [[path: 'target/allure-results']]
+            ])
+
+            // ✅ JMeter Report
             publishHTML(target: [
                 reportDir: 'jmeter-report',
                 reportFiles: 'index.html',
@@ -40,11 +49,14 @@ pipeline {
                 alwaysLinkToLastBuild: true,
                 allowMissing: true
             ])
+
             echo 'Pipeline executed'
         }
+
         success {
             echo 'Build Successful ✅'
         }
+
         failure {
             echo 'Build Failed ❌'
         }
