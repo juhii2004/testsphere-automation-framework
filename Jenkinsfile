@@ -7,20 +7,21 @@ pipeline {
 
     stages {
 
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/juhii2004/testsphere-automation-framework.git'
+            }
+        }
+
         stage('Build & Test') {
             steps {
                 bat 'mvn clean test'
             }
         }
 
-        stage('Allure Report') {
+        stage('Performance Test (JMeter)') {
             steps {
-                script {
-                    allure([
-                        includeProperties: false,
-                        results: [[path: 'target/allure-results']]
-                    ])
-                }
+                bat 'jmeter -n -t test-plan.jmx -l results.jtl'
             }
         }
     }
