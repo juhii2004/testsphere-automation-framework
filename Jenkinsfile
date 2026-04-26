@@ -28,6 +28,12 @@ pipeline {
                 '''
             }
         }
+
+        stage('Start Selenium Grid') {
+            steps {
+                bat 'start /B java -jar C:\\path\\to\\selenium-server-4.41.0.jar standalone'
+            }
+        }
     }
 
     post {
